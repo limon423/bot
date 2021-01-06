@@ -2,6 +2,11 @@ import asyncio
 from loader import bot, create_db
 import middlewares
 from data.config import admin
+import logging
+
+logging.basicConfig(format=u'%(filename)s [LINE:%(lineno)d] #%(levelname)-8s [%(asctime)s]  %(message)s',
+                    level=logging.INFO)
+
 
 async def on_startup(dp):
     middlewares.setup(dp)
@@ -14,5 +19,5 @@ async def on_startup(dp):
 if __name__ == '__main__':
     from aiogram import executor
     from handlers import dp
-
+    logging.info('Bot started')
     executor.start_polling(dp, on_startup=on_startup)
