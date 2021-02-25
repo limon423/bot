@@ -1,9 +1,14 @@
-from load_all import bot, admin, types
+from load_all import bot, admin, types, db, sql
 from aiogram import executor
-from aiogram.types import ReplyKeyboardRemove
 
 
 async def on_start(dp):
+    sql.execute("""CREATE TABLE IF NOT EXISTS users(
+id INT, 
+number TEXT,
+sum INT, 
+checknum TEXT)""")
+    db.commit()
     await bot.send_message(admin, text='бот запущен!')
 
 

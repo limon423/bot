@@ -1,8 +1,9 @@
 from os import getenv
 import dotenv
 
-dotenv.load_dotenv('E:\\python projects\\bot_earn\\.env')
+dotenv.load_dotenv('./.env')
 
+qiwi_token = getenv('QIWI_TOKEN')
 token = getenv('TOKEN')
 admin = getenv('ADMIN')
-payload_token = getenv('PAYLOAD_TOKEN')
+qiwi_number = getenv('QIWI_NUMBER')

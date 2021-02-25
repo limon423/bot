@@ -1,42 +1,41 @@
-from load_all import dp, bot
+from load_all import dp
 from aiogram import types
 from aiogram.dispatcher.filters import Text, Command
-from keyboards import menu, sellmenu, button
+from keyboards import menu
 from states import Events
 from aiogram.dispatcher import FSMContext
-from aiogram.types import ReplyKeyboardRemove
+
+nick = '@notfatcat'
+
+
+@dp.message_handler(Text(equals='вернуться в меню'), state=[None, Events.ask_num])
+async def cancel(message: types.Message, state: FSMContext):
+    text = 'вы вернулись в меню'
+    await state.finish()
+    await message.answer(text, reply_markup=menu)
 
 
 @dp.message_handler(Text(equals='помощь'))
 async def help(message: types.Message):
-    link = ''
     text = f'''появились вопросы?
 нашли недоработку в боте?
-пишите, администрация рассматривает каждый вопрос: {link}'''
+проблемы с оплатой?
+пишите, администрация рассматривает каждый вопрос: {nick}'''
     await message.answer(text)
-
-
-@dp.message_handler(Text(equals='отзывы'))
-async def reviems(message: types.Message):
-    link = ''
-    await message.answer(f'здесь вы найдете отзывы людей о боте: {link}')
-
-
-@dp.message_handler(Text(equals='на главную'), state=[Events.buy, Events.reviem, None])
-async def cancel(message: types.Message, state: FSMContext):
-    await state.finish()
-    text = 'вы вернулись в меню'
-    await message.answer(text, reply_markup=menu)
 
 
 @dp.message_handler(Command('start'))
 async def start(message: types.Message):
-    text = '''привет, это бот, который помогает людям зарабатывать деньги
-как это работает? я ищу разные способы как обмануть системы игровых
-сайтов, создаю на основе полученных данныхсхемы и продаю их за небольшую плату
-(полученные средства пойдут на разработку бота и поддержания его 
-работоспособности, я не получу денег с этого).
-более подробная информация в меню(управлять ботом также через меню)
+    text = '''привет, это бот, который поможет тебе 
+приобрести стратегии заработка для таких сайтов как: 
+nvuti, play2x, up-x, cabura и другие
+используй кнопки внизу чтобы пользоваться ботом
 '''
     await message.answer(text, reply_markup=menu)
 
+
+@dp.message_handler(Text(equals='нужен бот?'))
+async def get_reviem(message: types.Message):
+    text = f'''принимаем заказы на телеграм ботов для любых целей за скромную цену
+чтобы заказать пишите разработчику:{nick}'''
+    await message.answer(text)
