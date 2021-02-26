@@ -1,0 +1,7 @@
+aiogram
+pysqlite
+requests
+python-dotenv
+aiogram
+logging
+re
