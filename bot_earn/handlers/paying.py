@@ -47,8 +47,6 @@ def check_pay(message_id):
                 logging.error(2)
                 if req['data'][i]['comment'] == random_code:
                     logging.error(3)
-                    sql.execute(f"DELETE FROM users WHERE id = {message_id}")
-                    db.commit()
                     return True
     return False
 
