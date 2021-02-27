@@ -6,6 +6,7 @@ from states import Events
 from aiogram.dispatcher import FSMContext
 
 nick = '@notfatcat'
+nick_dev = '@devdef43'
 
 
 @dp.message_handler(Text(equals='вернуться в меню'), state=[None, Events.ask_num])
@@ -37,5 +38,5 @@ nvuti, play2x, up-x, cabura и другие
 @dp.message_handler(Text(equals='нужен бот?'))
 async def get_reviem(message: types.Message):
     text = f'''принимаем заказы на телеграм ботов для любых целей за скромную цену
-чтобы заказать пишите разработчику:{nick}'''
+чтобы заказать пишите разработчику: {nick_dev}'''
     await message.answer(text)
