@@ -11,12 +11,11 @@ import json
 import asyncio
 import logging
 parameters = {'rows': '10'}
-price = 1
+price = 20
 
 
 def create_check():
-    return str(2718765)
-#return str(int(time.time()*1000) % (10000*1000))
+    return str(int(time.time()*1000) % (10000*1000))
 
 
 def get_scheme():
