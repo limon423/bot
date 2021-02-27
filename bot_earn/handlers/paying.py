@@ -15,7 +15,8 @@ price = 20
 
 
 def create_check():
-    return str(int(time.time()*1000) % (10000*1000))
+    return str(7519711)
+#return str(int(time.time()*1000) % (10000*1000))
 
 
 def get_scheme():
